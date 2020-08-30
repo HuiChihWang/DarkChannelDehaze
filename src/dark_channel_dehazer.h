@@ -20,6 +20,8 @@ public:
     cv::Mat GetTMap() override;
 
 private:
+    void CalculateDarkChannel();
+    void EstimateAirLight();
 
     cv::Mat m_matImage;
     cv::Mat m_matDehazeImage;
