@@ -8,11 +8,13 @@ int main(int argc, char *argv[]) {
     const std::string strFilePath{argv[1]};
     const cv::Mat matImage = cv::imread(strFilePath);
 
-//    const auto pDehazer = CreateDarkChannelDehazer();
-//    pDehazer->SetUpImage(matImage);
-//    pDehazer->Dehaze();
-//
-//    auto matDehazeImage = pDehazer->GetDehazeImage();
+
+    TDehazerParameter tDehazerParameter;
+
+    const auto pDehazer = CreateDarkChannelDehazer(tDehazerParameter);
+    pDehazer->SetUpImage(matImage);
+    pDehazer->Dehaze();
+    auto matDehazeImage = pDehazer->GetDehazeImage();
 
 
     return 0;
