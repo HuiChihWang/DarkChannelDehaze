@@ -2,7 +2,7 @@
 // Created by Hui Chih Wang on 2020/8/28.
 //
 
-#include "DarkChannel.h"
+#include "dark_channel.h"
 #include "opencv2/imgproc.hpp"
 
 void CDarkChannel::SetImage(const cv::Mat &matImage) {

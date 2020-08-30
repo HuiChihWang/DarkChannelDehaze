@@ -1,16 +1,11 @@
 //
 // Created by Hui Chih Wang on 2020/8/28.
 //
-#ifndef DEHAZE_DARKCHANNEL_H
-#define DEHAZE_DARKCHANNEL_H
+#ifndef DEHAZE_DARK_CHANNEL_H
+#define DEHAZE_DARK_CHANNEL_H
 
 #include "opencv2/core.hpp"
-
-
-struct TDarkChannelSetting {
-    cv::Size sizePatch = cv::Size{7,7};
-
-};
+#include "../include/parameter_struct.h"
 
 class CDarkChannel {
 
@@ -37,4 +32,4 @@ private:
 };
 
 
-#endif //DEHAZE_DARKCHANNEL_H
+#endif //DEHAZE_DARK_CHANNEL_H
