@@ -21,7 +21,6 @@ bool CDarkChannel::CalDarkChannel() {
     auto matRGBMin = FilterRGBMin(m_matImage);
 
     auto matDarkChannelRough = FilterGrayMin(matRGBMin, m_pTSetting->sizePatch);
-    ShowImage(matDarkChannelRough, "DCRGB");
     m_matDarkChannel = matDarkChannelRough;
     return true;
 }

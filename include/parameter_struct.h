@@ -18,6 +18,7 @@ struct TDarkChannelSetting {
 
 struct TDehazerParameter {
     TDarkChannelSetting tDarkChannelSetting;
+    float airLightRatio = 0.9;
 };
 
 

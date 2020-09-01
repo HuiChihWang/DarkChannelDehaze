@@ -24,6 +24,7 @@ bool CDarkChannelDehazer::Dehaze() {
     }
 
     CalculateDarkChannel();
+    EstimateAirLight();
 
     return true;
 }
@@ -49,12 +50,17 @@ void CDarkChannelDehazer::CalculateDarkChannel() {
 }
 
 void CDarkChannelDehazer::EstimateAirLight() {
-    cv::Mat matTest = cv::Mat::eye(4,4,CV_32F);
-    cv::Mat matSortByRow;
-    cv::sortIdx(matTest, matSortByRow,
-                cv::SortFlags::SORT_EVERY_ROW + cv::SortFlags::SORT_ASCENDING);
+    cv::Mat matDC1D = m_matDarkChannel.reshape(1,1);
 
-    std::cout << matSortByRow;
+    cv::Mat matDC1DSortIdx;
+    auto&& sortOption = cv::SortFlags::SORT_EVERY_ROW + cv::SortFlags::SORT_ASCENDING;
+    cv::sortIdx(matDC1D, matDC1DSortIdx, sortOption);
+
+    int iAirLightPixelIndex = static_cast<int>(m_tSetting.airLightRatio * static_cast<float>(matDC1DSortIdx.cols));
+    int iAirLight1DIndex = matDC1DSortIdx.at<int>(0, iAirLightPixelIndex);
+
+    cv::Point ptAirLightPosition{iAirLight1DIndex % m_matDarkChannel.cols, iAirLight1DIndex / m_matDarkChannel.cols};
+    m_airLight = cv::Vec3f{ m_matImage.at<cv::Vec3b>(ptAirLightPosition) };
 }
 
 

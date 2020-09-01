@@ -4,17 +4,17 @@
 #include "../include/image_dehaze.hpp"
 
 int main(int argc, char *argv[]) {
+    if (argc == 2) {
+        const std::string strFilePath{ argv[1] };
+        const cv::Mat matImage = cv::imread(strFilePath);
 
-    const std::string strFilePath{argv[1]};
-    const cv::Mat matImage = cv::imread(strFilePath);
+        TDehazerParameter tDehazerParameter;
 
-    TDehazerParameter tDehazerParameter;
-
-    const auto pDehazer = CreateDarkChannelDehazer(tDehazerParameter);
-    pDehazer->SetUpImage(matImage);
-    pDehazer->Dehaze();
-    auto matDehazeImage = pDehazer->GetDehazeImage();
-
+        const auto pDehazer = CreateDarkChannelDehazer(tDehazerParameter);
+        pDehazer->SetUpImage(matImage);
+        pDehazer->Dehaze();
+        auto matDehazeImage = pDehazer->GetDehazeImage();
+    }
     return 0;
 }
 
