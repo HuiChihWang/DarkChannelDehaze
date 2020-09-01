@@ -69,3 +69,5 @@ void CDarkChannelDehazer::EstimateRoughTransmission() {
   auto matDarkChannelNormalize = m_darkChannelCalculator.GetDarkChannel();
   cv::Mat matTransmission = 1. - matDarkChannelNormalize;
 }
+
+void CDarkChannelDehazer::RefineTransmission() {}
