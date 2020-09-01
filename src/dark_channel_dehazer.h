@@ -7,31 +7,31 @@
 #include "../include/image_dehaze.hpp"
 #include "dark_channel.h"
 
-
 class CDarkChannelDehazer : public IImageDehazer {
-public:
-    CDarkChannelDehazer(const TDehazerParameter& tSetting);
-    ~CDarkChannelDehazer() = default;
+ public:
+  CDarkChannelDehazer(const TDehazerParameter& tSetting);
+  ~CDarkChannelDehazer() = default;
 
-    void SetUpImage(const cv::Mat &matImage) override;
-    bool Dehaze() override;
-    cv::Mat GetDehazeImage() override;
-    cv::Vec3f GetAirLight() override;
-    cv::Mat GetTMap() override;
+  void SetUpImage(const cv::Mat& matImage) override;
+  bool Dehaze() override;
+  cv::Mat GetDehazeImage() override;
+  cv::Vec3f GetAirLight() override;
+  cv::Mat GetTMap() override;
 
-private:
-    void CalculateDarkChannel();
-    void EstimateAirLight();
+ private:
+  void CalculateDarkChannel();
+  void EstimateAirLight();
+  void EstimateRoughTransmission();
+  void RefineTransmission();
 
-    cv::Mat m_matImage;
-    cv::Mat m_matDehazeImage;
-    cv::Mat m_matDarkChannel;
-    cv::Mat m_matTMap;
-    cv::Vec3f m_airLight;
+  cv::Mat m_matImage;
+  cv::Mat m_matDehazeImage;
+  cv::Mat m_matDarkChannel;
+  cv::Mat m_matTMap;
+  cv::Vec3f m_airLight;
 
-    TDehazerParameter m_tSetting;
-    CDarkChannel m_darkChannelCalculator;
+  TDehazerParameter m_tSetting;
+  CDarkChannel m_darkChannelCalculator;
 };
 
-
-#endif //DEHAZE_DARK_CHANNEL_DEHAZER_H
+#endif  // DEHAZE_DARK_CHANNEL_DEHAZER_H
