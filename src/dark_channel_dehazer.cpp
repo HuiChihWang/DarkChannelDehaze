@@ -28,6 +28,7 @@ bool CDarkChannelDehazer::Dehaze() {
   CalculateDarkChannel();
   EstimateAirLight();
   EstimateRoughTransmission();
+  RefineTransmission();
 
   return true;
 }
@@ -70,4 +71,9 @@ void CDarkChannelDehazer::EstimateRoughTransmission() {
   cv::Mat matTransmission = 1. - matDarkChannelNormalize;
 }
 
-void CDarkChannelDehazer::RefineTransmission() {}
+void CDarkChannelDehazer::RefineTransmission() {
+    m_guidedFilter.SetImage(m_matTMap);
+    m_guidedFilter.SetGuidedImage(m_matImage);
+    m_guidedFilter.Filtering();
+    m_matTMap = m_guidedFilter.GetFilteredImage();
+}

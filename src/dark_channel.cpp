@@ -23,8 +23,6 @@ bool CDarkChannel::CalculateDarkChannel(const cv::Vec3f &vecAirLight) {
   auto matDarkGreen = FilterGrayMin(vecBGRChannels[1] / vecAirLight [1], m_pTSetting->sizePatch);
   auto matDarkRed = FilterGrayMin(vecBGRChannels[2] / vecAirLight[2], m_pTSetting->sizePatch);
 
-  // TODO: implment normalized dark channel
-
   cv::Mat matDarkChannelRGB;
   cv::merge(std::vector<cv::Mat>{matDarkBlue, matDarkGreen, matDarkRed},
             matDarkChannelRGB);

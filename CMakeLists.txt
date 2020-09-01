@@ -7,5 +7,5 @@ find_package(opencv REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 
-add_executable(Dehaze src/main.cpp src/dark_channel.cpp src/dark_channel.h include/image_dehaze.hpp src/dark_channel_dehazer.cpp src/dark_channel_dehazer.h include/parameter_struct.h)
+add_executable(Dehaze src/main.cpp src/dark_channel.cpp src/dark_channel.h include/image_dehaze.hpp src/dark_channel_dehazer.cpp src/dark_channel_dehazer.h include/parameter_struct.h src/image_guided_filter.cpp src/image_guided_filter.h)
 target_link_libraries(Dehaze ${OpenCV_LIBS})

@@ -6,6 +6,7 @@
 #define DEHAZE_DARK_CHANNEL_DEHAZER_H
 #include "../include/image_dehaze.hpp"
 #include "dark_channel.h"
+#include "image_guided_filter.h"
 
 class CDarkChannelDehazer : public IImageDehazer {
  public:
@@ -32,6 +33,7 @@ class CDarkChannelDehazer : public IImageDehazer {
 
   TDehazerParameter m_tSetting;
   CDarkChannel m_darkChannelCalculator;
+  CImageGuidedFilter m_guidedFilter;
 };
 
 #endif  // DEHAZE_DARK_CHANNEL_DEHAZER_H
