@@ -3,7 +3,7 @@
 
 struct TGuidedFilterParameter {
 	int iPatchRadius = 3;
-	float fRegulizer = 1.f;
+	float fRegulizer = 0.003;
 };
 
 class CImageGuidedFilter {
@@ -19,11 +19,11 @@ public:
 
 
 private:
-    void CalculateMean();
-    void CalculatePatchVariance();
-    void CalculateLinearCoefficients();
-    void CalculateBias();
-    void CalculateGuidedImage();
+	void CalculateMean();
+	void CalculatePatchVariance();
+	void CalculateLinearCoefficients();
+	void CalculateBias();
+	void CalculateGuidedImage();
 
 	cv::Mat m_matImage;
 	cv::Mat m_matGuidedImage;
